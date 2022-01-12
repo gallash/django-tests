@@ -1,0 +1,43 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <!-- Important on DJANGO users -->
+    <!-- https://simpleisbetterthancomplex.com/tutorial
+        /2018/01/18/how-to-implement-multiple-user-types-with-django.html -->
+
+    <main>
+        <div class="div-form">
+            <form method="POST"> <!--I must add the method of the form, always-->
+                {% csrf_token %} <!--Django REQUIRES the CSRF token for forms security if it's POST-->
+                <fieldset class="register-fieldset"> <!--Fieldset, why should I use it? It groups variables?-->
+                    <legend class="register-legend"> <!--What is legend for?-->
+                        Join Today
+                    </legend>
+
+                    {{ form|crispy }} 
+                    <!--'form' alone will print the form that we need from Django-->
+                    <!--'form.as_p' will convert some text in p paragraphs, allowing minor customization-->
+                    <!--Crispy Forms will overhaul the appearance of the form using Bootstrap-->
+
+                </fieldset>
+                
+                <div class="div-button">
+                    <button class="button" type="submit">Sign up</button>
+                </div>
+            </form>
+            <div class="div-button">
+                <small>Already Have an Account? <a class="" href="{% url 'login' %}">Sign in</a>!</small>
+            </div>
+
+        </div>
+    </main>
+
+{% endblock content %}
+
+
+<!-- 
+Total que temos: 1900
+
+- 400 (aluguel) = 1500 
+- 980 (Nubank) -520 (Banco do Brasil) = 0 -->

@@ -1,0 +1,24 @@
+{% extends "main/postings.html" %}
+{% block navigation-bar %}
+
+    <!-- Idea doesn't work -->
+
+    <header class="body-header">
+        <nav class="navbar">
+            <a href="{% url 'website-index' %}">Home</a>
+            <a href="{% url 'website-postings' %}">Postings</a> 
+            <span class="div-navbar-items"> <a href="#">Projects</a>  </span>
+            <span class="div-navbar-items"> <a class="" href="#">About & Contact</a> </span>
+        </nav>
+
+        <a class="navbar-gallas" href="{% url 'website-postings' %}">GALLAS</a>
+
+        <ul class="navbar-register">
+            <div>
+                <a href="{% url 'user-registration' %}">Sign up</a>
+                <a href="#"><button>Sign in</button></a>
+            </div>
+        </ul>
+    </header>
+
+{% endblock navigation-bar %}

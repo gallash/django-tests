@@ -1,0 +1,39 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+    <!-- <body class="background-style-postings">
+        <header class="body-header">
+            <nav class="navbar">
+                <a href="{% url 'website-index' %}">Home</a> |
+                <a href="{% url 'website-postings' %}">Postings</a> |
+                <a href="#">Projects</a> |
+                <a href="#">About & Contact</a>
+            </nav>
+        </header> -->
+        <!-- {% block navigation-bar %}
+        {% endblock navigation-bar %} -->
+        <!-- Idea doesn't seem to work -->
+
+
+        <main>
+            <!-- The following templating style is similar to JINJA templating -->
+            <!-- The curly brackets and percent sign is a notation built for Django -->
+            {% for post in posts %} <!-- We have to use curly braces to initiate code blocks -->
+                <article class="postings-article">
+                    <h2> {{ post.title }} </h2> <!-- We use double curly braces to use variables passe to 'render' -->
+
+                    <p class="postings-info-color"> 
+                        By <span>{{ post.author }}</span> 
+                        on <span>{{ post.date|date:"F d, Y" }}</span> 
+                    </p>
+                    
+                    <p> 
+                        {{ post.content }} 
+                    </p>
+                </article>
+
+            {% endfor %} <!-- We have to close for, if, etc with endfor, endif, etc -->
+        </main>
+    <!-- </body> -->
+
+{% endblock content %}

@@ -1,0 +1,65 @@
+<!-- Adding static elements (CSS, favicon, etc) -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% if title %}
+            <title>Gallas - {{ title }} </title>
+        {% else %}
+            <title>Gallas</title> <!--Home Page-->
+        {% endif %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}"> 
+        <!-- Or "../../static/main/main.css" | {% static 'main/main.css' %}-->
+        
+        <link rel="icon" type="image/x-icon" href="{% static 'main/favicon-16x16.png' %}">
+    </head>
+
+    <!-- Here I could experiment with creating an IF check to verify if it's the Index page. If it is,
+    then use another class
+        %{ if title/page == index %}
+    Something like this and the block above -->
+
+    <body class="background-style-postings">
+        <header class="body-header">
+            <nav class="navbar">
+                <a class="navbar-anchors" href="{% url 'website-index' %}">Home</a>
+                <a class="navbar-anchors" href="{% url 'website-postings' %}">Postings</a> 
+                <a class="navbar-anchors" href="#">Projects</a>
+                <!-- <a class="navbar-anchors" href="#">About & Contact</a> -->
+            </nav>
+
+            <a class="navbar-gallas navbar-anchors" href="{% url 'website-postings' %}">GALLAS</a>
+
+            <ul class="navbar-register">
+                {% if user.is_authenticated %} <!-- User is logged in -->
+                    <!-- Toggle list: a) dashboard/profile/menu, b) log out -->
+                    <div class="navbar-dropdown">
+                        <button class="button navbar-button">{{ user }}</button>
+                        <div class="navbar-dropdown-menu">
+                            <ul class="navbar-ul">
+                                <li><a class="navbar-anchors" href="{% url 'profile' %}">Profile</a></li>
+                                <li><a class="navbar-anchors" href="{% url 'logout' %}">Log out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% else %} <!-- If user is not logged in -->
+                    <a class="navbar-anchors" href="{% url 'login' %}">Sign in</a>
+                    <a class="navbar-anchors" href="{% url 'register' %}">Sign up</a>
+                {% endif %}
+                
+            </ul>
+        </header>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}"> {{ message }} </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        <!-- This block of content will allow the script to dynamically add content -->
+        <!-- The content to be added here must be declared in its specific page -->
+        {% endblock %}
+    </body>
+</html>

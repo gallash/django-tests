@@ -1,0 +1,28 @@
+{% extends "main/base.html" %}
+{% block content %}
+    <main>
+        <div class="profile-banner" style="background-image: url( '{{ user.profile.profile_banner.url }}' )">
+            <!-- CSS: url(' { <user_image_url> }} ') -->
+
+            <div class="profile-main">
+                <!-- img class="profile-picture" sr c="{ user.profile.profile_picture.url }}"> -->
+                <div class="profile-picture" style="background-image: url(' {{ user.profile.profile_picture.url }} ')"></div>
+                <!-- This is not enough to show the image, it is necessary to point where is the directory located -->
+                <!-- Django has different ways to point the location in Development and in Production -->
+                <!-- For Development, go to the PROJECT'S 'urls.py',
+                    add 'static' and 'settings' libraries as written
+                    and then add to the patterns list as written (for DEBUG = Development) -->
+                
+                <div class="col-sameHeight-halfRem"></div>
+                
+                <div class="profile-main-info">
+                    <!-- <h1>Hello, {{ user.first_name }} ;)</h1> Animation -->
+                    <div class="profile-name-username">
+                        <p class="profile-p profile-p-name">{{ user.first_name }} {{ user.last_name }}</p>
+                        <p class="profile-p">{{ user.username }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
