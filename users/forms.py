@@ -28,5 +28,3 @@ class UserRegisterForm(UserCreationForm):
         # https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/
         # https://docs.djangoproject.com/en/3.2/ref/models/options/
     
-
-# class 
